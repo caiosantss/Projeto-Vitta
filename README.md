@@ -28,7 +28,7 @@ O projeto está sendo desenvolvido por:
   - JavaScript (puro, sem frameworks)
 
 - **Backend:**
-  - Python (puro, sem frameworks)
+  - Python ou PHP (puro, sem frameworks)
 
 - **Banco de Dados:**
   - MySQL
