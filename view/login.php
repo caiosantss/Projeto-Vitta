@@ -1,0 +1,42 @@
+<?php
+session_start();
+include('../model/conexao.php');
+
+## Verificação da existencia de dados email e senha
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+
+        if (empty($_POST['email'])){
+            echo "Preencha seu email";
+            exit;
+
+        } else if(empty($_POST['senha'])) {  
+            echo "Preencha sua senha";
+            exit;
+        }
+
+        #evitar sqlinjection -> limpa a string
+
+        $email = $mysqli->real_escape_string($_POST ['email']);
+        $senha = $mysqli->real_escape_string($_POST ['senha']);
+
+        $sql_code = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+        $sql_result = $mysqli->query($sql_code);
+
+        if ($sql_result->num_rows == 1) {
+            #Login bem sucedido
+
+            $usuario = $sql_result->fetch_assoc();
+            $_SESSION['email'] = $email;
+            $_SESSION['id'] = $usuario['id'];
+            echo "Login bem sucedido";
+           # header(pagina_pos_login.html)
+
+        }else {
+            echo "Usuario ou Senha incorretos";
+        }
+};
+
+$mysqli->close();
+
+?>
