@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $usuario = $sql_result->fetch_assoc();
             $_SESSION['email'] = $email;
             $_SESSION['id'] = $usuario['id'];
-            echo "Login bem sucedido";
-           # header(pagina_pos_login.html)
-
+           
+            header("Location: escolhas.html");
+                
         }else {
             echo "Usuario ou Senha incorretos";
         }
