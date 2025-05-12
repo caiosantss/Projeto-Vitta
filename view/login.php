@@ -2,6 +2,13 @@
 session_start();
 include('../model/conexao.php');
 
+//Se usuario estiver logado, pula está página
+if (isset($_SESSION['id'])) {
+    header("Location: escolhas.html"); 
+    exit();
+}
+
+
 ## Verificação da existencia de dados email e senha
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
