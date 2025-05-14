@@ -2,13 +2,6 @@
 session_start();
 include('../model/conexao.php');
 
-//Se usuario estiver logado, pula está página
-if (isset($_SESSION['id'])) {
-    header("Location: escolhas.html"); 
-    exit();
-}
-
-
 ## Verificação da existencia de dados email e senha
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -32,13 +25,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($sql_result->num_rows == 1) {
             #Login bem sucedido
+                $usuario = $sql_result->fetch_assoc();
+                $_SESSION['email'] = $email;
+                $_SESSION['id'] = $usuario['id'];
+                $_SESSION['tipo_usuario'] = $usuario['tipo_usuario'];
 
-            $usuario = $sql_result->fetch_assoc();
-            $_SESSION['email'] = $email;
-            $_SESSION['id'] = $usuario['id'];
-           
-            header("Location: escolhas.html");
-                
+                #Separando redirecionamento de medicos e usuarios
+                if ($usuario['tipo_usuario'] == 1) {
+                    header("Location: tabelamedicoinfo.html");
+                }else {
+                    header("Location: escolhas.php");
+                }        
         }else {
             echo "Usuario ou Senha incorretos";
         }
