@@ -1,0 +1,122 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 20px;
+  color: #4a6e4a;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.medico-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.medico-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.foto-medico {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nome-medico {
+  margin: 0;
+  font-size: 1.4em;
+  color: #2c3e50;
+}
+
+.especialidade,
+.endereco,
+.preco {
+  margin: 4px 0;
+  color: #555;
+}
+
+.parcelado {
+  color: #888;
+  font-size: 0.9em;
+}
+
+/* Tabela customizada */
+
+.horarios-agenda {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: #4a6e4a;
+}
+
+.header-agenda {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid #4a6e4a;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.dias-semana {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.dia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 80px;
+}
+
+.nome-dia {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.data-dia {
+  font-size: 0.75rem;
+  color: #a5b4a5;
+}
+
+.horarios-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.horarios-coluna button {
+  background-color: #d4eadf;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-weight: 600;
+  color: #4a6e4a;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  text-align: center;
+}
+
+.horarios-coluna button:hover,
+.horarios-coluna button.selected {
+  background-color: #75b45a;
+  color: white;
+}
