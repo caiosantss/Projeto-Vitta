@@ -20,7 +20,7 @@ if (!isset($_SESSION['id'])) {
     <header>
         <nav>
             <ul>
-                <li><a href="main.html">Início</a></li>
+                <li><a href="../main.html">Início</a></li>
                 <li><a href="escolhas.php">Agendar</a></li>
                 <li><a href="#" onclick="alert('Função em desenvolvimento')">Consultas</a></li>
                 <li><a href="logout.php">Sair</a></li>

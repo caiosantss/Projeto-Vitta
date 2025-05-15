@@ -1,34 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const links = document.querySelectorAll("nav a[href^='#']");
-    const modal = document.getElementById("modal");
-    const modalText = document.getElementById("modalText");
-    const closeModal = document.getElementById("closeModal");
-  
-    const contents = {
-      sobre: "<h2>Sobre nós</h2><p>Somos a VITTA, dedicada a facilitar seu acesso à saúde.</p>",
-      especialidades: "<h2>Especialidades</h2><p>Oferecemos clínicas de dermatologia, psicologia, nutrição, e mais.</p>",
-      contato: "<h2>Contato</h2><p>Você pode nos encontrar pelo WhatsApp, e-mail ou em nossa unidade física.</p>"
-    };
-  
-    links.forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const id = link.getAttribute("href").substring(1);
-        if (contents[id]) {
-          modalText.innerHTML = contents[id];
-          modal.classList.add("show");
+ // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Modal Functions
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+
+        // Open login modal
+        function openLoginModal() {
+            loginModal.classList.add('show');
         }
-      });
-    });
-  
-    closeModal.addEventListener("click", () => {
-      modal.classList.remove("show");
-    });
-  
-    window.addEventListener("click", e => {
-      if (e.target === modal) {
-        modal.classList.remove("show");
-      }
-    });
-  });
-  
+
+        // Close login modal
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.remove('show');
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('show');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });

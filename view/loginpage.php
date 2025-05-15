@@ -27,7 +27,7 @@ if (isset($_SESSION['id'])) {
     <input type="password" name="senha" id="senha" placeholder="Senha" required>
     <button type="submit">Entrar</button>
     <div class="link">
-      <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+      <p>Não tem uma conta? <a href="cadastro.html ">Cadastre-se</a></p>
     </div>
   </form>
 </div>

@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssss", $nome, $email, $cpf, $senhaHash);
 
         if ($stmt->execute()) {
-            header("Location: loginpage.html?cadastro=sucesso");
+            header("Location: loginpage.php?cadastro=sucesso");
             exit();
         } else {
             $erros[] = "Erro ao cadastrar usuário.";

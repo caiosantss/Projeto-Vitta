@@ -1,42 +1,394 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="style.css" />
-    <title>Consulta Fácil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITTA - Gerenciamento de Consultas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <h2>VITTA</h2>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/img/vitta-logo.png" href="view/assets/img/vitta-logo.png" alt="VITTA Logo">
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="view/sobrenos.html">Sobre nós</a></li>
+                    <li><a href="#especialidades">Especialidades</a></li>
+                    <li><a href="#como-funciona">Como funciona</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="view/loginpage.php" class="button">Agende Agora</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="view/sobrenos.html">Sobre nós</a></li>
-                <li><a href="#especialidades">Especialidades</a></li>
-                <li><a href="#contato">Contato</a></li>
-                <li><a href="view/loginpage.php" class="button">Agende Agora</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <main class="hero">
-        <h1>Agende sua consulta com os melhores profissionais da sua região</h1>
-        <p>Cuidar da sua saúde nunca foi tão fácil.</p>
-        <a href="view/cadastro.html" class="button">Começar agora</a>
-    </main>
-
-    <div id="modal" class="modal hidden">
-        <div class="modal-content">
-          <span id="closeModal">&times;</span>
-          <div id="modalText"></div>
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Cuidando da sua saúde com tecnologia e praticidade</h1>
+                <p>Agende consultas médicas com os melhores especialistas da sua região de forma rápida e segura, sem filas e sem complicações.</p>
+                <div class="hero-buttons">
+                    <a href="view/cadastro.html" class="button">Começar agora</a>
+                    <a href="#como-funciona" class="button outline">Saiba como funciona</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/img/hero-image.jpg" alt="Consulta médica digital">
+            </div>
         </div>
-      </div>
-      
-    <footer class="bot">
-        <p>&copy; 2025 VITTA. Todos os direitos reservados.</p>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Por que escolher a VITTA?</h2>
+                <p>Oferecemos uma experiência completa para o cuidado com a sua saúde.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Agendamento simplificado</h3>
+                    <p>Agende consultas em minutos, escolhendo horários que se encaixem na sua rotina e sem burocracias.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Especialistas qualificados</h3>
+                    <p>Médicos e profissionais da saúde cuidadosamente selecionados para oferecer o melhor atendimento.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3>Consultas online e presenciais</h3>
+                    <p>Flexibilidade para escolher entre consultas digitais ou presenciais conforme sua necessidade.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-medical-alt"></i>
+                    </div>
+                    <h3>Histórico médico digital</h3>
+                    <p>Acesse seus resultados, prescrições e histórico de consultas em um só lugar, de forma segura.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Lembretes automáticos</h3>
+                    <p>Receba notificações sobre suas consultas agendadas e lembretes para medicamentos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Privacidade garantida</h3>
+                    <p>Seus dados são protegidos com os mais altos padrões de segurança e confidencialidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="especialidades" class="specialties">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossas especialidades</h2>
+                <p>Conte com profissionais especializados em diversas áreas da medicina.</p>
+            </div>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Cardiologia</h3>
+                    <p>Cuidados para a saúde do seu coração</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neurologia</h3>
+                    <p>Especialistas em sistema nervoso</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Ortopedia</h3>
+                    <p>Tratamento para ossos e articulações</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3>Pneumologia</h3>
+                    <p>Cuidados respiratórios especializados</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Odontologia</h3>
+                    <p>Saúde bucal completa</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Oftalmologia</h3>
+                    <p>Cuidados com a visão</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Pediatria</h3>
+                    <p>Atenção especial às crianças</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="specialty-icon">
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                    <h3>Clínica Geral</h3>
+                    <p>Atendimento médico integrado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como funciona</h2>
+                <p>Agendar sua consulta é simples e rápido.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Cadastre-se</h3>
+                    <p>Crie sua conta gratuitamente em poucos minutos</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Escolha o especialista</h3>
+                    <p>Selecione médicos por especialidade, avaliação ou proximidade</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Agende sua consulta</h3>
+                    <p>Escolha a data e horário mais convenientes para você</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Pronto!</h3>
+                    <p>Receba a confirmação e compareça à consulta no horário marcado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>O que nossos pacientes dizem</h2>
+                <p>Experiências reais de quem já utilizou nossos serviços.</p>
+            </div>
+            <div class="testimonials-carousel">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">A VITTA transformou minha experiência com consultas médicas. Agora consigo agendar rapidamente e sem complicações. Os médicos são excelentes e o atendimento é sempre pontual.</p>
+                    <div class="testimonial-author">
+                        <img src="assets/img/testimonial-1.jpg" alt="Foto de Ana Silva">
+                        <div class="author-info">
+                            <h4>Ana Silva</h4>
+                            <p>Paciente desde 2022</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">Como médico, a plataforma VITTA me ajudou a organizar melhor minha agenda e a me conectar com mais pacientes. A interface é intuitiva e o suporte técnico é excelente.</p>
+                    <div class="testimonial-author">
+                        <img src="assets/img/testimonial-2.jpg" alt="Foto de Dr. Carlos Mendes">
+                        <div class="author-info">
+                            <h4>Dr. Carlos Mendes</h4>
+                            <p>Cardiologista</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">Minha família inteira usa a VITTA. É muito prático ter todo o histórico médico em um só lugar e poder agendar consultas para todos com facilidade. Recomendo muito!</p>
+                    <div class="testimonial-author">
+                        <img src="assets/img/testimonial-3.jpg" alt="Foto de Roberto Almeida">
+                        <div class="author-info">
+                            <h4>Roberto Almeida</h4>
+                            <p>Paciente desde 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Comece a cuidar da sua saúde hoje mesmo</h2>
+            <p>Junte-se a milhares de pessoas que já estão aproveitando os benefícios da VITTA para gerenciar sua saúde de forma inteligente.</p>
+            <a href="view/cadastro.html" class="button">Criar minha conta</a>
+        </div>
+    </section>
+
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Entre em contato</h2>
+                <p>Estamos aqui para ajudar. Envie-nos uma mensagem.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Informações de contato</h3>
+                    <p>Tire suas dúvidas, envie sugestões ou solicite suporte através dos nossos canais de atendimento.</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p>Av. Paulista, 1000 - Bela Vista</p>
+                            <p>São Paulo - SP, 01310-100</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <p>(11) 3456-7890</p>
+                            <p>Segunda a Sexta, 8h às 18h</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p>contato@vitta.com.br</p>
+                            <p>suporte@vitta.com.br</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envie uma mensagem</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nome completo</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Assunto</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="form-button">Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/img/vitta-logo.png" alt="VITTA Logo">
+                    </div>
+                    <p>A VITTA é uma plataforma de gerenciamento de consultas médicas que conecta pacientes e profissionais da saúde, tornando o cuidado com a saúde mais acessível e eficiente.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Links rápidos</h4>
+                    <ul>
+                        <li><a href="view/sobrenos.html">Sobre nós</a></li>
+                        <li><a href="#especialidades">Especialidades</a></li>
+                        <li><a href="#como-funciona">Como funciona</a></li>
+                        <li><a href="view/cadastro.html">Cadastre-se</a></li>
+                        <li><a href="view/loginpage.php">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Central de ajuda</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Termos de uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Para médicos</h4>
+                    <ul>
+                        <li><a href="#">Seja um parceiro</a></li>
+                        <li><a href="#">Vantagens</a></li>
+                        <li><a href="#">Planos</a></li>
+                        <li><a href="#">Depoimentos</a></li>
+                        <li><a href="#">Suporte técnico</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 VITTA - Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
-    <script src="mainjs.js"></script>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <h2>Entrar na sua conta</h2>
+            <form action="#" method="POST" class="login-form">
+                <div class="form-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+                </div>
+                <button type="submit" class="form-button">Entrar</button>
+                <p class="register-link">Ainda não tem uma conta? <a href="view/cadastro.html">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="view/mainjs.js"></script>
 </body>
 </html>
