@@ -14,17 +14,26 @@ if (!isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Painel do Usuário</title>
-    <link rel="stylesheet" href="assets/css/painel.css">
+    <link rel="stylesheet" href="../style.css"> <!-- Caminho do CSS principal -->
 </head>
 <body>
-    <div class="container">
-        <h1>Olá, <?php echo htmlspecialchars($usuario); ?>!</h1>
-        
-        <div class="botoes">
-            <a href="escolhas.php" class="botao">Agendar Consulta</a>
-            <a href="#" class="botao desativado" onclick="alert('Essa função ainda não está disponível.')">Ver Consultas</a>
-            <<a href="logout.php" class="botao sair">Sair</a>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="main.html">Início</a></li>
+                <li><a href="escolhas.php">Agendar</a></li>
+                <li><a href="#" onclick="alert('Função em desenvolvimento')">Consultas</a></li>
+                <li><a href="logout.php">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <div class="mid">
+        <h1>Bem-vindo, <?php echo htmlspecialchars($usuario); ?>!</h1>
+        <div class="botoes" style="text-align: center; margin-top: 40px;">
+            <a href="escolhas.php" class="button">Agendar Consulta</a>
+            <a href="#" class="button" onclick="alert('Função em desenvolvimento')">Ver Consultas</a>
+            <a href="logout.php" class="button">Sair</a>
         </div>
     </div>
 </body>

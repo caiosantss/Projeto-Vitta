@@ -6,3 +6,4 @@ session_destroy(); // destrói a sessão
 header("Location: loginpage.php");
 exit();
 ?>
+a
