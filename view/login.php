@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($usuario['tipo_usuario'] == 1) {
                     header("Location: tabelamedicoinfo.html");
                 }else {
-                    header("Location: escolhas.php");
+                    header("Location: painel.php");
                 }        
         }else {
             echo "Usuario ou Senha incorretos";
