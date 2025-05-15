@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 #Separando redirecionamento de medicos e usuarios
                 if ($usuario['tipo_usuario'] == 1) {
-                    header("Location: tabelamedicoinfo.html");
+                    header("Location: ../main.html");
                 }else {
                     header("Location: painel.php");
                 }        
