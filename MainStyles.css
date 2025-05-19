@@ -44,7 +44,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    
 }
 
 .logo {
@@ -53,8 +53,9 @@ header {
 }
 
 .logo img {
-    height: 45px;
-    margin-right: 10px;
+    height: 100px;
+    width: 100px;
+    margin-right: 5px;
 }
 
 nav ul {

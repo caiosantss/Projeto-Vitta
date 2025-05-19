@@ -19,12 +19,12 @@ if (!isset($_SESSION['id'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/painel.css">
+    <link rel="stylesheet" href="assets/css/painelCliente.css">
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="assets/img/vitta-logo.png" alt="VITTA Logo">
+            <a href="../main.html"><img src="assets/img/vitta-logo.png" alt="VITTA Logo"></a>
         </div>
         <nav>
             <ul>

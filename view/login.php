@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tipo_usuario'] = $usuario['tipo_usuario'];
 
             if ($usuario['tipo_usuario'] == 1) {
-                header("Location: tabelamedicoinfo.html");
+                header("Location: ##");
             } else {
-                header("Location: painel.php");
+                header("Location: painelCliente.php");
             }
         } else {
             echo "Usuario ou Senha incorretos";

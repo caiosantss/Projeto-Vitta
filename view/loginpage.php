@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['id'])) {
-    header("Location: painel.php");
+    header("Location: painelCliente.php");
     exit();
 }
 ?>
@@ -37,7 +37,7 @@ if (isset($_SESSION['id'])) {
             <button type="submit">Entrar</button>
             
             <div class="link">
-                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+                <p>Não tem uma conta? <a href="cadastroPage.php">Cadastre-se</a></p>
             </div>
         </form>
     </div>

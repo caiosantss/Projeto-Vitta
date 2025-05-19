@@ -13,7 +13,7 @@ body {
 /* Header */
 header {
     background-color: #ffffff;
-    padding: 20px 40px;
+    padding: 0px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,7 +25,8 @@ header {
 }
 
 .logo img {
-    height: 40px;
+    height: 100px;
+    width: 100px;
 }
 
 nav ul {

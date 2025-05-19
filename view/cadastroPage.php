@@ -1,0 +1,39 @@
+
+<?php
+session_start();
+if (isset($_SESSION['id'])) {
+    header("Location: painel.php");
+    exit();
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro - Consultas Médicas</title>
+  <link rel="stylesheet" href="assets/css/cadastrostyle.css">
+  <script src="assets/js/validacaocadastro.js"></script>
+</head>
+<body>
+
+<div class="cadastro-container">
+  <h2>Crie sua conta</h2>
+  <form action="cadastro.php" method="POST">
+    <input type="text" name="nome" placeholder="Nome completo" required>
+    <input type="email" name="email" placeholder="E-mail" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+    <input type="password" name="confirma-senha" placeholder="Confirme a senha" required>
+    <input type="text" id="cpf" name="cpf" placeholder="CPF" maxlength="14" required>
+
+    <button type="submit">Cadastrar</button>
+    <div class="link">
+      <p>Já tem uma conta? <a href="loginpage.php">Entrar</a></p>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
