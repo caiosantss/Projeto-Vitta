@@ -105,3 +105,66 @@ button[type="submit"]:hover {
 .link a:hover {
     text-decoration: underline;
 }
+
+
+
+/* Estilos para a mensagem de erro */
+.error-message {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: slideDown 0.3s ease-out;
+    border-left: 4px solid #c0392b;
+}
+
+.error-message i {
+    font-size: 14px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeito sutil de shake para o container quando há erro */
+.form-shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-3px);
+    }
+    75% {
+        transform: translateX(3px);
+    }
+}
+
+/* Destaque vermelho sutil nos campos quando há erro */
+.error-input {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+}
+
+/* Transição suave para quando o erro é removido */
+input[type="email"],
+input[type="password"] {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
