@@ -9,6 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = $_POST['senha'] ?? '';
     $confirma_senha = $_POST['confirma-senha'] ?? '';
 
+    // Armazena valores para não perder o que o usuário digitou
+    $_SESSION['cadastro_valores'] = [
+        'nome' => $nome,
+        'email' => $email,
+        'cpf' => $cpf
+    ];
+
     $erros = [];
 
     // Validações
@@ -17,19 +24,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erros[] = "E-mail inválido.";
+        $erros[] = "E-mail inválido. Por favor, insira um e-mail válido.";
     }
 
-    if (empty($cpf) || !preg_match('/^\d{11}$/', $cpf)) {
-        $erros[] = "CPF inválido. Deve conter exatamente 11 números (sem pontos ou traços).";
+    // Remove caracteres não numéricos do CPF
+    $cpf_numeros = preg_replace('/[^0-9]/', '', $cpf);
+    
+    if (empty($cpf_numeros)) {
+        $erros[] = "CPF inválido. O CPF deve conter apenas números.";
+    } elseif (strlen($cpf_numeros) != 11) {
+        $erros[] = "CPF inválido. Deve conter exatamente 11 dígitos.";
     }
 
     if (strlen($senha) < 8) {
         $erros[] = "A senha deve ter pelo menos 8 caracteres.";
+    } elseif (!preg_match('/[A-Z]/', $senha) || !preg_match('/[0-9]/', $senha)) {
+        $erros[] = "A senha deve conter pelo menos uma letra maiúscula e um número.";
     }
 
     if ($senha !== $confirma_senha) {
-        $erros[] = "As senhas não coincidem.";
+        $erros[] = "As senhas não coincidem. Por favor, digite a mesma senha nos dois campos.";
     }
 
     // Verifica se email já está cadastrado
@@ -40,30 +54,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $erros[] = "Este e-mail já está cadastrado.";
+            $erros[] = "Este e-mail já está cadastrado. Por favor, use outro e-mail ou faça login.";
         }
     }
 
-    // Inserção no banco de dados
-    if (empty($erros)) {
-        $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-        $stmt = $mysqli->prepare("INSERT INTO usuarios (nome, email, cpf, senha) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $nome, $email, $cpf, $senhaHash);
-
-        if ($stmt->execute()) {
-            header("Location: loginpage.php?cadastro=sucesso");
-            exit();
-        } else {
-            $erros[] = "Erro ao cadastrar usuário.";
-        }
-    }
-
-    // Exibição de erros
+    // Se houver erros, redireciona de volta ao formulário
     if (!empty($erros)) {
-        foreach ($erros as $erro) {
-            echo "<p style='color: red;'>$erro</p>";
-        }
+        $_SESSION['cadastro_erros'] = $erros;
+        header("Location: cadastroPage.php");
+        exit();
+    }
+
+    // Inserção no banco de dados (só executa se não houver erros)
+    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+    $stmt = $mysqli->prepare("INSERT INTO usuarios (nome, email, cpf, senha) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nome, $email, $cpf_numeros, $senhaHash);
+
+    if ($stmt->execute()) {
+        $_SESSION['cadastro_sucesso'] = "Cadastro realizado com sucesso! Faça login para continuar.";
+        header("Location: loginpage.php");
+        exit();
+    } else {
+        $_SESSION['cadastro_erros'] = ["Erro ao cadastrar usuário. Por favor, tente novamente."];
+        header("Location: cadastroPage.php");
+        exit();
     }
 }
 
