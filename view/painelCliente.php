@@ -29,9 +29,9 @@ if (!isset($_SESSION['id'])) {
         <nav>
             <ul>
                 <li><a href="../main.html">Início</a></li>
-                <li><a href="especialidades.html">Especialidades</a></li>
-                <li><a href="como-funciona.html">Como funciona</a></li>
-                <li><a href="contato.html">Contato</a></li>
+                <li><a href="../main.html#especialidades">Especialidades</a></li>
+                <li><a href="../main.html#como-funciona">Como funciona</a></li>
+                <li><a href="../main.html#contato">Contato</a></li>
             </ul>
         </nav>
         <a href="logout.php" class="button">Sair</a>
