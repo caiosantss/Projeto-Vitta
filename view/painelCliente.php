@@ -5,8 +5,13 @@ $usuario = $_SESSION['usuario'] ?? 'Visitante';
 // Evita acesso sem login
 if (!isset($_SESSION['id'])) {
     header("Location: loginpage.php");
-    exit;
+    
+} elseif ((isset($_SESSION['id']) && $_SESSION['tipo_usuario'] == 1)) {
+    echo "Você não tem permissão para acessar esta página";
+    echo "<a href='../main.html'> Voltar para HOME</a>";
+   exit();
 }
+
 ?>
 
 <!DOCTYPE html>

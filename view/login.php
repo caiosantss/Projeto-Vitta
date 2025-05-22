@@ -30,7 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tipo_usuario'] = $usuario['tipo_usuario'];
 
             if ($usuario['tipo_usuario'] == 1) {
-                header("Location: ##");
+                ##header("Location: loginpage.php");
+                echo "Aguardando pagina de admin medico";
             } else {
                 header("Location: painelCliente.php");
             }
