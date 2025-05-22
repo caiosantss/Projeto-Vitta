@@ -6,11 +6,13 @@ include('../model/conexao.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($_POST['email'])){
-        echo "Preencha seu email";
+        $_SESSION['erro_login'] = "Por favor, preencha seu email";
+        header("Location: loginpage.php");
         exit;
 
     } else if(empty($_POST['senha'])) {  
-        echo "Preencha sua senha";
+        $_SESSION['erro_login'] = "Por favor, preencha sua senha";
+        header("Location: loginpage.php");
         exit;
     }
 
@@ -31,15 +33,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($usuario['tipo_usuario'] == 1) {
                 ##header("Location: loginpage.php");
-                echo "Aguardando pagina de admin medico";
+                echo "Aguardando pagina de admin medico <a href='logout.php'> Logout <a/>";
             } else {
                 header("Location: painelCliente.php");
             }
         } else {
-            echo "Usuario ou Senha incorretos";
+            $_SESSION['erro_login'] = "Email ou senha incorretos";
+            header("Location: loginpage.php");
+            exit;
         }
     } else {
-        echo "Usuario ou Senha incorretos";
+        $_SESSION['erro_login'] = "Email ou senha incorretos";
+        header("Location: loginpage.php");
+        exit;
     }
 };
 
