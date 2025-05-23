@@ -29,7 +29,7 @@ if (isset($_SESSION['erro_login'])) {
             <img src="assets/img/vitta-logo.png" alt="VITTA Logo">
         </div>
         <h2>Bem-vindo</h2>
-        <p class="subtitle">Entre com seus dados para acessar</p>
+        <p class="subtitle">Entre com seus dados para acessar.</p>
         
         <?php if (!empty($erro)): ?>
             <div class="error-message">
