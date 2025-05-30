@@ -1,6 +1,6 @@
 <?php
 session_start();
-$usuario = $_SESSION['usuario'] ?? 'Visitante';
+$usuario = $_SESSION['nome'] ?? 'Visitante';
 
 // Evita acesso sem login
 if (!isset($_SESSION['id'])) {
@@ -48,7 +48,7 @@ if (!isset($_SESSION['id'])) {
             <a href="escolhas.php" class="botao">
                 <i class="fas fa-calendar-plus"></i> Agendar Consulta
             </a>
-            <a href="#" class="botao" onclick="alert('Função em desenvolvimento')">
+            <a href="minhasConsultas.php" class="botao">
                 <i class="fas fa-clipboard-list"></i> Ver Minhas Consultas
             </a>
             <a href="perfil.php" class="botao">

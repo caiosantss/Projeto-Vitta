@@ -52,11 +52,11 @@ if (!isset($_SESSION['id'])) {
                     <h2>Consultas presenciais</h2>
                 </div>
                 <ul class="especialidade-lista">
-                    <li><a href="#">Oftalmologista</a></li>
-                    <li><a href="#">Clínico Geral</a></li>
-                    <li><a href="#">Dermatologista</a></li>
-                    <li><a href="#">Psiquiatra</a></li>
-                    <li><a href="#">Ginecologista</a></li>
+                    <li><a href="listarMedicos.php?especialidade=1">Oftalmologista</a></li>
+                    <li><a href="listarMedicos.php?especialidade=2">Clínico Geral</a></li>
+                    <li><a href="listarMedicos.php?especialidade=3">Dermatologista</a></li>
+                    <li><a href="listarMedicos.php?especialidade=4">Psiquiatra</a></li>
+                    <li><a href="listarMedicos.php?especialidade=5">Ginecologista</a></li>
                 </ul>
             </div>
             
@@ -68,11 +68,11 @@ if (!isset($_SESSION['id'])) {
                     <h2>Teleconsulta</h2>
                 </div>
                 <ul class="especialidade-lista">
-                    <li><a href="#">Psicólogo</a></li>
-                    <li><a href="#">Nutricionista</a></li>
-                    <li><a href="#">Dermatologista</a></li>
-                    <li><a href="#">Endocrinologista</a></li>
-                    <li><a href="#">Clínico Geral</a></li>
+                    <li><a href="listarMedicos.php?especialidade=6">Psicólogo</a></li>
+                    <li><a href="listarMedicos.php?especialidade=7">Nutricionista</a></li>
+                    <li><a href="listarMedicos.php?especialidade=3">Dermatologista</a></li>
+                    <li><a href="listarMedicos.php?especialidade=8">Endocrinologista</a></li>
+                    <li><a href="listarMedicos.php?especialidade=2">Clínico Geral</a></li>
                 </ul>
             </div>
         </div>

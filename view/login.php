@@ -30,13 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $email;
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['tipo_usuario'] = $usuario['tipo_usuario'];
+            $_SESSION['nome'] = $usuario['nome'];
 
             if ($usuario['tipo_usuario'] == 1) {
-                ##header("Location: loginpage.php");
-                echo "Aguardando pagina de admin medico <a href='logout.php'> Logout <a/>";
+                header("Location: painelMedico.php");
             } else {
                 header("Location: painelCliente.php");
             }
+            exit();
         } else {
             $_SESSION['erro_login'] = "Email ou senha incorretos";
             header("Location: loginpage.php");
