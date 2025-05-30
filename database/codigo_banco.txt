@@ -1,9 +1,183 @@
+-- =====================================================
+-- PROJETO VITTA - SISTEMA DE GERENCIAMENTO DE CONSULTAS
+-- Database Básico com Estrutura e Dados Essenciais
+-- =====================================================
+
+-- Remover database se existir e criar novo
+DROP DATABASE IF EXISTS gerenciamento_consultas;
+CREATE DATABASE gerenciamento_consultas;
+USE gerenciamento_consultas;
+
+-- =====================================================
+-- CRIAÇÃO DAS TABELAS
+-- =====================================================
+
+-- Tabela de usuários (pacientes e médicos)
 CREATE TABLE usuarios (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    cpf VARCHAR(14) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    cpf VARCHAR(11) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
-    tipo_usuario TINYINT(1) DEFAULT 0,
-    PRIMARY KEY (id)
+    tipo_usuario TINYINT DEFAULT 0 COMMENT '0 = Paciente, 1 = Médico',
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOLEAN DEFAULT TRUE
 );
+
+-- Tabela de especialidades médicas
+CREATE TABLE especialidades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- Tabela de médicos (dados específicos)
+CREATE TABLE medicos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    especialidade_id INT NOT NULL,
+    crm VARCHAR(20) NOT NULL UNIQUE,
+    valor_consulta DECIMAL(10,2) NOT NULL,
+    biografia TEXT,
+    ativo BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (especialidade_id) REFERENCES especialidades(id)
+);
+
+-- Tabela de horários disponíveis dos médicos
+CREATE TABLE horarios_disponiveis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    medico_id INT NOT NULL,
+    data_hora DATETIME NOT NULL,
+    disponivel BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (medico_id) REFERENCES medicos(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_medico_horario (medico_id, data_hora)
+);
+
+-- Tabela de consultas agendadas
+CREATE TABLE consultas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    paciente_id INT NOT NULL,
+    medico_id INT NOT NULL,
+    data_hora DATETIME NOT NULL,
+    status ENUM('agendada', 'confirmada', 'realizada', 'cancelada') DEFAULT 'agendada',
+    observacoes TEXT,
+    valor_pago DECIMAL(10,2),
+    data_agendamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (paciente_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (medico_id) REFERENCES medicos(id) ON DELETE CASCADE
+);
+
+-- =====================================================
+-- INSERÇÃO DE DADOS BÁSICOS
+-- =====================================================
+
+-- Inserir especialidades médicas
+INSERT INTO especialidades (nome, descricao) VALUES
+('Oftalmologia', 'Especialidade médica que cuida da saúde dos olhos'),
+('Clínica Geral', 'Atendimento médico geral e preventivo'),
+('Dermatologia', 'Especialidade que trata da pele, cabelos e unhas'),
+('Psiquiatria', 'Especialidade que trata de transtornos mentais'),
+('Ginecologia', 'Especialidade que cuida da saúde da mulher'),
+('Psicologia', 'Atendimento psicológico e terapêutico'),
+('Nutrição', 'Orientação nutricional e dietética'),
+('Endocrinologia', 'Especialidade que trata de hormônios e metabolismo'),
+('Cardiologia', 'Especialidade que cuida do coração'),
+('Neurologia', 'Especialidade que trata do sistema nervoso');
+
+-- Inserir usuários médicos (tipo_usuario = 1)
+-- Senha para todos: "password"
+INSERT INTO usuarios (nome, email, cpf, senha, tipo_usuario) VALUES
+('Dr. João Silva', 'joao.silva@vitta.com', '12345678901', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1),
+('Dra. Maria Santos', 'maria.santos@vitta.com', '12345678902', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1),
+('Dr. Carlos Mendes', 'carlos.mendes@vitta.com', '12345678903', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1),
+('Dra. Ana Costa', 'ana.costa@vitta.com', '12345678904', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1),
+('Dr. Pedro Oliveira', 'pedro.oliveira@vitta.com', '12345678905', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1);
+
+-- Inserir usuários pacientes (tipo_usuario = 0) para teste
+INSERT INTO usuarios (nome, email, cpf, senha, tipo_usuario) VALUES
+('Paciente Teste', 'paciente@teste.com', '98765432101', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 0),
+('Ana Silva', 'ana.paciente@teste.com', '98765432102', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 0),
+('Carlos Santos', 'carlos.paciente@teste.com', '98765432103', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 0);
+
+-- Inserir dados dos médicos
+INSERT INTO medicos (usuario_id, especialidade_id, crm, valor_consulta) VALUES
+((SELECT id FROM usuarios WHERE email = 'joao.silva@vitta.com'), 1, 'CRM/SP 123456', 150.00),
+((SELECT id FROM usuarios WHERE email = 'maria.santos@vitta.com'), 2, 'CRM/SP 123457', 120.00),
+((SELECT id FROM usuarios WHERE email = 'carlos.mendes@vitta.com'), 3, 'CRM/SP 123458', 180.00),
+((SELECT id FROM usuarios WHERE email = 'ana.costa@vitta.com'), 4, 'CRM/SP 123459', 200.00),
+((SELECT id FROM usuarios WHERE email = 'pedro.oliveira@vitta.com'), 5, 'CRM/SP 123460', 160.00);
+
+-- =====================================================
+-- CONSULTAS DE EXEMPLO NO HISTÓRICO
+-- =====================================================
+
+-- Inserir consultas de exemplo (histórico)
+INSERT INTO consultas (paciente_id, medico_id, data_hora, status, observacoes, valor_pago) VALUES
+-- Consultas realizadas (histórico)
+((SELECT id FROM usuarios WHERE email = 'paciente@teste.com'), 1, '2024-12-15 08:00:00', 'realizada', 'Consulta de rotina - exame de vista. Paciente apresentou leve miopia.', 150.00),
+
+((SELECT id FROM usuarios WHERE email = 'ana.paciente@teste.com'), 2, '2024-12-10 14:30:00', 'realizada', 'Check-up geral. Paciente em bom estado de saúde.', 120.00),
+
+((SELECT id FROM usuarios WHERE email = 'carlos.paciente@teste.com'), 3, '2024-12-05 10:00:00', 'realizada', 'Avaliação dermatológica - remoção de verruga.', 180.00),
+
+-- Consulta cancelada (histórico)
+((SELECT id FROM usuarios WHERE email = 'paciente@teste.com'), 4, '2024-12-08 15:00:00', 'cancelada', 'Paciente cancelou por motivos pessoais.', NULL),
+
+-- Consulta agendada para demonstrar o sistema
+((SELECT id FROM usuarios WHERE email = 'ana.paciente@teste.com'), 5, '2024-12-20 09:00:00', 'agendada', 'Consulta ginecológica de rotina.', NULL);
+
+-- =====================================================
+-- INFORMAÇÕES PARA O GRUPO
+-- =====================================================
+
+/*
+=== CREDENCIAIS DE ACESSO ===
+
+MÉDICOS (tipo_usuario = 1):
+- joao.silva@vitta.com / password (Oftalmologia)
+- maria.santos@vitta.com / password (Clínica Geral)
+- carlos.mendes@vitta.com / password (Dermatologia)
+- ana.costa@vitta.com / password (Psiquiatria)
+- pedro.oliveira@vitta.com / password (Ginecologia)
+
+PACIENTES (tipo_usuario = 0):
+- paciente@teste.com / password
+- ana.paciente@teste.com / password
+- carlos.paciente@teste.com / password
+
+=== COMO USAR ===
+
+1. Execute este arquivo SQL no MySQL
+2. Configure model/conexao.php com seus dados do banco
+3. Acesse view/loginpage.php
+4. Faça login com qualquer usuário acima
+5. Médicos podem cadastrar horários em "Gerenciar Horários"
+6. Pacientes podem agendar consultas em "Agendar Consulta"
+
+=== FUNCIONALIDADES ===
+
+✅ Login diferenciado (médico/paciente)
+✅ Médicos cadastram seus horários
+✅ Pacientes agendam consultas
+✅ Histórico de consultas
+✅ Cancelamento de consultas
+✅ Atualização de status pelo médico
+
+=== ESTRUTURA BÁSICA ===
+
+- usuarios (pacientes + médicos)
+- especialidades (10 especialidades)
+- medicos (5 médicos cadastrados)
+- horarios_disponiveis (médicos cadastram via interface)
+- consultas (algumas de exemplo no histórico)
+*/
+
+-- Verificar se tudo foi criado corretamente
+SELECT 'DATABASE CRIADO COM SUCESSO!' as status;
+SELECT COUNT(*) as total_usuarios FROM usuarios;
+SELECT COUNT(*) as total_medicos FROM medicos;
+SELECT COUNT(*) as total_especialidades FROM especialidades;
+SELECT COUNT(*) as consultas_exemplo FROM consultas;
