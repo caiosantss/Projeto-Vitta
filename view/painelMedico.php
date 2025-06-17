@@ -162,9 +162,7 @@ $proximas_consultas = $stmt->get_result();
                             <i class="fas fa-list"></i>
                             <span>Ver Todas as Consultas</span>
                         </a>
-                        <a href="relatorioConsultas.php" class="action-btn">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Relatórios</span>
+                        
                         </a>
                     </div>
                 </div>
