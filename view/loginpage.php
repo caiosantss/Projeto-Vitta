@@ -1,17 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
+
+if ((isset($_SESSION['id']))) {
+    if ($_SESSION['tipo_usuario'] == 0) {
     header("Location: painelCliente.php");
-    exit();
+    } else if ($_SESSION['tipo_usuario'] == 1 ) {
+       header("Location: painelMedico.php");
+    }
 }
-
-// Verificar se existe mensagem de erro na sessão
-$erro = '';
-if (isset($_SESSION['erro_login'])) {
-    $erro = $_SESSION['erro_login'];
-    unset($_SESSION['erro_login']); // Remove a mensagem após exibir
-}
-
 ?>
 
 <!DOCTYPE html>
